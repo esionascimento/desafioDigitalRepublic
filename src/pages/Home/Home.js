@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Login } from '../../components/Login/Login';
+
 import './Home.css'
 
 function Home() {
@@ -12,6 +14,7 @@ function Home() {
             <p></p>
           </div>
           <div className="right">
+            <Login />
           </div>
         </div>
       </div>

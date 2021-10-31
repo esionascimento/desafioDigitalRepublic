@@ -1,0 +1,55 @@
+.card-header h3 {
+  color: black;
+}
+
+.card {
+  margin: 10px;
+}
+
+.input-in {
+  padding: 10px 15px;
+  width: 300px;
+}
+
+.input-login {
+  padding: 12px 80px;
+  width: 335px;
+}
+
+.input-ra {
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+form {
+  text-align: center;
+}
+
+.input-login:hover {
+  background-color: slateblue;
+}
+
+.input-ra:focus-visible {
+  border-color: rgb(0, 60, 255);
+  color: rgb(0, 60, 255);
+  outline: none;
+}
+
+.links a {
+  margin-left: 4px;
+}
+
+.hr2 {
+  margin: 5px;
+}
+
+@media screen and (max-width: 400px) {
+  .input-in {
+    margin: 10px auto;
+    width: 50%; /* Valor da Largura */  
+  }
+  .input-login {
+    padding: 6px 40px;
+    width: auto;
+  }
+}
