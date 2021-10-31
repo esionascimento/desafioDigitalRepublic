@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import  { Redirect } from 'react-router-dom';
 
+import { newCadastro } from '../../service/service';
+
 import './Cadastro.css';
 
 const initialState = {
@@ -22,7 +24,7 @@ export function Cadastro() {
   }
   
   function onSubmit() {
-    /* newCadastro(cadastro); */
+    newCadastro(cadastro);
     setRedirect(true);
     /* setStorage(cadastro); */
   }

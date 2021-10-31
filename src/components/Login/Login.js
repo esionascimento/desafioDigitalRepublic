@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { authLogin } from '../../service/service';
+
 import './Login.css';
 
 function initialState() {
@@ -23,6 +25,8 @@ export function Login() {
   
   async function onSubmit(event) {
     event.preventDefault();
+
+    authLogin(valuesLogin);
 
     setValues(initialState);
     setValidLogin(true);
