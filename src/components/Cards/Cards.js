@@ -32,19 +32,22 @@ export const Cards = () => {
   } */
   const showModal = (event) => {
     setIsModalVisible(true);
-    qualParede = event.target.getAttribute('name')
+    console.log('event.target.getAttribute', event.target.getAttribute('name'));
+    qualParede = event.target.getAttribute('name');
   };
   
   const  onChange = (event) => {
     setValue(prevState => {
       return {
         ...prevState,
-        [qualParede] : {...prevState.primeiraParede, [event.target.getAttribute('name')]: event.target.value }
+        [qualParede] : {...prevState[qualParede], [event.target.getAttribute('name')]: event.target.value }
       }
     });
+    console.log(value);
   }
   
   const handleOk = (event) => {
+    console.log('qualParede :', qualParede);
     if (qualParede === 'primeiraParede') {
       setRenderTextButton((oldState) => {
         return { ...oldState, primeiraParede: !oldState.primeiraParede };
@@ -57,7 +60,7 @@ export const Cards = () => {
       setRenderTextButton((oldState) => {
         return { ...oldState, terceiraParede: !oldState.terceiraParede };
       });
-    } else {
+    } else if (qualParede === 'quartaParede') {
       setRenderTextButton((oldState) => {
         return { ...oldState, quartaParede: !oldState.quartaParede };
       });
@@ -81,7 +84,7 @@ export const Cards = () => {
         <div name="pare" className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.primeiraParede ?
-                <p name="">oi</p>
+              <div name="primeiraParede">{value.primeiraParede.altura}</div>
               : <p name="primeiraParede">Primeira Parede</p>
             }
           </Button>
@@ -89,7 +92,7 @@ export const Cards = () => {
         <div className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.segundaParede ?
-                <p name="">deu certo segunda parede</p>
+                <p name="segundaParede">deu certo segunda parede</p>
               : <p name="segundaParede">Segunda Parede</p>
             }
           </Button>
@@ -97,7 +100,7 @@ export const Cards = () => {
         <div className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.terceiraParede ?
-                <p name="">deu certo segunda parede</p>
+                <p name="terceiraParede">deu certo segunda parede</p>
               : <p name="terceiraParede">Terceira Parede</p>
             }
           </Button>
@@ -105,8 +108,8 @@ export const Cards = () => {
         <div className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.quartaParede ?
-                <div>
-                  <button>Editar Quarta Parede</button>
+                <div name="quartaParede">
+                  a
                 </div>
               : <p name="quartaParede">Quarta Parede</p>
             }
