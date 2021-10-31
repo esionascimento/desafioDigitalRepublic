@@ -36,19 +36,15 @@ export const Cards = () => {
   };
   
   const  onChange = (event) => {
-    console.log(event.target.getAttribute('name'));
-    
     setValue(prevState => {
       return {
         ...prevState,
-        [qualParede] : {...prevState, [event.target.getAttribute('name')]: event.target.value }
+        [qualParede] : {...prevState.primeiraParede, [event.target.getAttribute('name')]: event.target.value }
       }
     });
-    console.log('primeiraParede :', value);
   }
   
   const handleOk = (event) => {
-    console.log('qualParede :', qualParede);
     if (qualParede === 'primeiraParede') {
       setRenderTextButton((oldState) => {
         return { ...oldState, primeiraParede: !oldState.primeiraParede };
