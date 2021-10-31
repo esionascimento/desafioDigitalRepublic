@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paredes {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  border: 1px solid silver;
+}
+.item {
+  /*https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row*/
+  flex: 1 1 50%;
+  padding: 5px; 
+  box-sizing: border-box;
+  text-align: center;
+}
+
+button {
+  margin: 20px auto;
+}
