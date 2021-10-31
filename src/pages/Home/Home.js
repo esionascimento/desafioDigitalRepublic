@@ -4,7 +4,7 @@ import { Login } from '../../components/Login/Login';
 
 import './Home.css'
 
-function Home() {
+export function Home() {
   return (
     <>
       <div className="box">
@@ -24,5 +24,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;
