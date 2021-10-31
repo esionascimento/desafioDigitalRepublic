@@ -21,24 +21,30 @@ export const Cards = () => {
     quartaParede: false,
   });
   
-  function onChangeGenerico(event, qualParede) {
-    setValue({
-      ...value,
-      [event.target.name]: event.target.value
+  /* function onChangeGenerico(event) {
+    setValue(prevState => {
+      return {
+        ...prevState,
+        [qualParede.event.target.name] : event.target.value
+      }
     });
-  }
+    console.log(value.primeiraParede);
+  } */
   const showModal = (event) => {
     setIsModalVisible(true);
-    qualParede = event.target.attributes.name.nodeValue;
+    qualParede = event.target.getAttribute('name')
   };
   
   const  onChange = (event) => {
-    onChangeGenerico(qualParede);
-    console.log(event.target);
-    setValue({
-      ...value,
-      [event.target.name]: event.target.value
+    console.log(event.target.getAttribute('name'));
+    
+    setValue(prevState => {
+      return {
+        ...prevState,
+        [qualParede] : {...prevState, [event.target.getAttribute('name')]: event.target.value }
+      }
     });
+    console.log('primeiraParede :', value);
   }
   
   const handleOk = (event) => {
@@ -114,14 +120,14 @@ export const Cards = () => {
           <label>Altura da parede
             <input name="altura" onChange={onChange}/>
           </label>
-          <label name="largura" onChange={onChange}>Largura da parede
-            <input />
+          <label>Largura da parede
+            <input name="largura" onChange={onChange}/>
           </label>
-          <label name="porta" onChange={onChange}>Quantas portas
-            <input type="number"/>
+          <label >Quantas portas
+            <input name="porta" onChange={onChange} type="number"/>
           </label>
-          <label name="janela" onChange={onChange}>Quantas janelas
-            <input type="number"/>
+          <label >Quantas janelas
+            <input name="janela" onChange={onChange} type="number"/>
           </label>
         </Modal>
       </div>
