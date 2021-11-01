@@ -5,6 +5,7 @@ import './Cards.css';
 import 'antd/dist/antd.css';
 
 let qualParede = 'primeiraParede';
+let resultadoTotalTinta;
 
 export const Cards = () => {
   const [value, setValue] = useState({
@@ -21,19 +22,8 @@ export const Cards = () => {
     quartaParede: false,
   });
   
-  /* function onChangeGenerico(event) {
-    setValue(prevState => {
-      return {
-        ...prevState,
-        [qualParede.event.target.name] : event.target.value
-      }
-    });
-    console.log(value.primeiraParede);
-  } */
   const showModal = (event) => {
-    console.log('event :', event);
     setIsModalVisible(true);
-    console.log('event.target.getAttribute', event.target.getAttribute('name'));
     qualParede = event.target.getAttribute('name');
   };
   
@@ -44,7 +34,38 @@ export const Cards = () => {
         [qualParede] : {...prevState[qualParede], [event.target.getAttribute('name')]: event.target.value }
       }
     });
-    console.log(value);
+  }
+
+  function calcularQtdLatasTintas() {
+    let lata05 = 0, lata25 = 0, lata36 = 0, lata18 = 0;
+    let litroTintas = resultadoTotalTinta / 5;
+    while (litroTintas > 0) {
+      if (litroTintas >= 18) {
+        litroTintas = litroTintas - 18
+        lata18 += 1;
+      } else if (litroTintas >= 3.6) {
+        litroTintas = litroTintas - 3.6;
+        lata36 += 1;
+      } else if (litroTintas >= 2.5) {
+        litroTintas = litroTintas - 2.5;
+        lata25 += 1;
+      } else {
+        litroTintas = litroTintas - 0.5;
+        lata05 += 1;
+      }
+    }
+    if (lata05 > 0) {
+      console.log(`Precisa de ${lata05} latas de 0.5L`);
+    }
+    if (lata25 > 0) {
+      console.log(`Precisa de ${lata25} latas de 2.5L`);
+    }
+    if (lata36 > 0) {
+      console.log(`Precisa de ${lata36} latas de 3.6L`);
+    }
+    if (lata18 > 0) {
+      console.log(`Precisa de ${lata18} latas de 18L`);
+    }
   }
 
   function chaveRenderTextButton() {
@@ -174,8 +195,9 @@ export const Cards = () => {
           const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
           const resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
           console.log('resultadoTotalParedeM2 :', resultadoTotalParedeM2);
-          const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
+          resultadoTotalTinta = resultadoTotalParedeM2 / 5;
           console.log('resultadoTotalTinta :', resultadoTotalTinta);
+          calcularQtdLatasTintas();
         }}>Calcular</button>
       </div>
     </div>
