@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import Simulador from './Simulador/SimuladorReducer';
+import { SimuladorReducer } from './Simulador/SimuladorReducer';
 import thunk from 'redux-thunk';
 
 
 const rootReducer = combineReducers({
-  simulador: Simulador,
+  simulador: SimuladorReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose ;

@@ -1,13 +1,17 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
 
 import './Cards.css';
 import 'antd/dist/antd.css';
 
+import { Calcular } from '../../store/Simulador/SimuladorAction';
+
 let qualParede = 'primeiraParede';
 let resultadoTotalParedeM2;
 
 export const Cards = () => {
+  const dispatch = useDispatch();
   const [value, setValue] = useState({
     primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
     segundaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
@@ -211,6 +215,7 @@ export const Cards = () => {
           console.log('resultadoTotalParedeM2 :', resultadoTotalParedeM2);
           const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
           console.log('resultadoTotalTinta :', resultadoTotalTinta);
+          dispatch(Calcular(resultadoTotalParedeM2))
           calcularQtdLatasTintas();
         }}>Calcular</button>
       </div>

@@ -1,14 +1,15 @@
 import React from 'react';
 
-export function Dashboard() {
+export function Resultado() {
   return (
     <div>
       <div>
         Resultado:
       </div>
       <div>
-        
+
       </div>
     </div>
   );
 };
+
