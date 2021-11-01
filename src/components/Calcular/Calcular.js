@@ -27,19 +27,15 @@ export function CalcularResultado() {
       }
     }
     if (lata05 > 0) {
-      console.log(`Precisa de ${lata05} latas de 0.5L`);
       dispatch(actionLata05(lata05));
     }
     if (lata25 > 0) {
-      console.log(`Precisa de ${lata25} latas de 2.5L`);
       dispatch(actionLata25(lata25));
     }
     if (lata36 > 0) {
-      console.log(`Precisa de ${lata36} latas de 3.6L`);
       dispatch(actionLata36(lata36));
     }
     if (lata18 > 0) {
-      console.log(`Precisa de ${lata18} latas de 18L`);
       dispatch(actionLata18(lata18));
     }
   }

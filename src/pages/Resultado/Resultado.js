@@ -12,7 +12,7 @@ export function Resultado() {
       <h2>Resultado</h2>
       <div className="conteiner-body">
         <div>
-          <p>{resultadoTotalParedeM2}M^2</p>
+          <p>Total de parede: {resultadoTotalParedeM2}m^2</p>
         </div>
         <div>
           {lata05 > 0 && <p>Precisa de {lata05} latas de 0.5L</p>}

@@ -17,7 +17,6 @@ let resultadoTotalParedeM2;
 
 export const Cards = () => {
   const { resultadoLatasM2 } = useSelector((state) => state.calcular);
-  console.log('resultadoLatasM2 :', resultadoLatasM2);
   const dispatch = useDispatch();
   const [value, setValue] = useState({
     primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
@@ -138,22 +137,24 @@ export const Cards = () => {
     return <Redirect to="/dashboard/resultado" />
   }
 
+  function renderDados(a) {
+    console.log('a :', a);
+    return (
+      <div>
+        <span>Altura: {value[a].altura}</span>
+        <span>Largura: {value[a].largura}</span>
+        <span>Janela: {value[a].janela}</span>
+        <span>Porta: {value[a].porta}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="card">
-      <div>
-        <p>Cada litro de tinta é capaz de pintar 5 metros quadrados</p>
-        <p>Não considerar teto nem piso</p>
-        <p>As variações de tamanho das latas de tinta são: 0,5L; 2,5L; 3,6L; 18L</p>
-      </div>
       <div className="paredes">
         <div name="pare" className="item">
           { renderTextButton.primeiraParede ?
-            <div>
-              <span>Altura: {value.primeiraParede.altura}</span>
-              <span>Largura: {value.primeiraParede.largura}</span>
-              <span>Janela: {value.primeiraParede.janela}</span>
-              <span>Porta: {value.primeiraParede.porta}</span>
-            </div>
+              renderDados('primeiraParede')
            : null  
           }
           <Button name="primeiraParede" type="primary" onClick={showModal}>
@@ -165,13 +166,8 @@ export const Cards = () => {
           </Button>
         </div>
         <div className="item">
-            { renderTextButton.segundaParede ?
-            <div>
-              <span>Altura: {value.segundaParede.altura}</span>
-              <span>Largura: {value.segundaParede.largura}</span>
-              <span>Janela: {value.segundaParede.janela}</span>
-              <span>Porta: {value.segundaParede.porta}</span>
-            </div>
+          { renderTextButton.segundaParede ?
+            renderDados('segundaParede')
            : null  
           }
           <Button name="segundaParede" type="primary" onClick={showModal}>
@@ -183,6 +179,10 @@ export const Cards = () => {
           </Button>
         </div>
         <div className="item">
+          { renderTextButton.terceiraParede ?
+            renderDados('terceiraParede')
+           : null  
+          }
           <Button name="terceiraParede" type="primary" onClick={showModal}>
             {renderTextButton.terceiraParede ?
                 <div name="terceiraParede">Editar terceira parede
@@ -192,6 +192,10 @@ export const Cards = () => {
           </Button>
         </div>
         <div className="item">
+          { renderTextButton.quartaParede ?
+            renderDados('quartaParede')
+           : null  
+          }
           <Button name="quartaParede" type="primary" onClick={showModal}>
             {renderTextButton.quartaParede ?
                 <div name="quartaParede">Editar quarta parede
