@@ -47,7 +47,7 @@ export const Cards = () => {
     console.log(value);
   }
   
-  const handleOk = (event) => {
+  function paredeComPorta() {
     if (qualParede === 'primeiraParede') {
       setRenderTextButton((oldState) => {
         return { ...oldState, primeiraParede: !oldState.primeiraParede };
@@ -66,6 +66,16 @@ export const Cards = () => {
       });
     }
     setIsModalVisible(false);
+  }
+  
+  const handleOk = () => {
+    if (value[qualParede].porta === 0) {
+      paredeComPorta();
+    } else if (value[qualParede].porta > 0 && value[qualParede].altura > 2.2) {
+      paredeComPorta();
+    } else {
+      window.alert('A altura de paredes com porta deve ser, no mínimo, 30 centímetros maior que a altura da porta');
+    }
   };
 
   const handleCancel = () => {
@@ -134,10 +144,10 @@ export const Cards = () => {
             <input value={value[qualParede].largura} type="number" name="largura" min="1" max="15" onChange={onChange} required/>
           </label>
           <label >Quantas portas
-            <input value={value[qualParede].porta} name="porta" onChange={onChange} min="0" type="number"/>
+            <input value={value[qualParede].porta} name="porta" onChange={onChange} min="0"  max="3" type="number"/>
           </label>
           <label >Quantas janelas
-            <input value={value[qualParede].janela} name="janela" onChange={onChange} min="0" type="number"/>
+            <input value={value[qualParede].janela} name="janela" onChange={onChange} min="0" max="3" type="number"/>
           </label>
         </Modal>
       </div>
