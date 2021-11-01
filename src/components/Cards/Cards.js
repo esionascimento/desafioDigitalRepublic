@@ -144,61 +144,30 @@ export const Cards = () => {
     }
   }
 
+  const paredes = ['primeiraParede', 'segundaParede', 'terceiraParede', 'quartaParede'];
+  const positionParede = ['Primeira Parede', 'Segunda Parede', 'Terceira Parede', 'Quarta Parede'];
+
   return (
     <div className="card">
       <div className="paredes">
-        <div className="item">
-          { renderTextButton.primeiraParede ?
-              renderDados('primeiraParede')
-           : null  
-          }
-          <Button name="primeiraParede" type="primary" onClick={showModal}>
-            {renderTextButton.primeiraParede ?
-                <div name="primeiraParede">Editar primeira parede
-                </div>
-              : <p name="primeiraParede">Primeira Parede</p>
-            }
-          </Button>
-        </div>
-        <div className="item">
-          { renderTextButton.segundaParede ?
-            renderDados('segundaParede')
-           : null  
-          }
-          <Button name="segundaParede" type="primary" onClick={showModal}>
-            {renderTextButton.segundaParede ?
-                <div name="segundaParede">Editar segunda parede
-                </div>
-              : <p name="segundaParede">Segunda Parede</p>
-            }
-          </Button>
-        </div>
-        <div className="item">
-          { renderTextButton.terceiraParede ?
-            renderDados('terceiraParede')
-           : null  
-          }
-          <Button name="terceiraParede" type="primary" onClick={showModal}>
-            {renderTextButton.terceiraParede ?
-                <div name="terceiraParede">Editar terceira parede
-                </div>
-              : <p name="terceiraParede">Terceira Parede</p>
-            }
-          </Button>
-        </div>
-        <div className="item">
-          { renderTextButton.quartaParede ?
-            renderDados('quartaParede')
-           : null  
-          }
-          <Button name="quartaParede" type="primary" onClick={showModal}>
-            {renderTextButton.quartaParede ?
-                <div name="quartaParede">Editar quarta parede
-                </div>
-              : <p name="quartaParede">Quarta Parede</p>
-            }
-          </Button>
-        </div>
+        {paredes.map((auxParede, index) => {
+          return (
+            <div className="item">
+              { renderTextButton[auxParede] ?
+                renderDados(auxParede)
+                : null
+              }
+              <Button name={auxParede} type="primary" onClick={showModal}>
+                {renderTextButton.auxParede ?
+                    <div name={auxParede}>Editar {positionParede[index]}
+                    </div>
+                  : <p name={auxParede}>{positionParede[index]}</p>
+                }
+              </Button>
+            </div>
+          )
+        })}
+
         <Modal title="Basic Modal" visible={isModalVisible} onOk={() => {
           if (value[qualParede].altura > 0 && value[qualParede].largura > 0) {
             handleOk()
