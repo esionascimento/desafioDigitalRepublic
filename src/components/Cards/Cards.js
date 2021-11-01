@@ -5,7 +5,7 @@ import './Cards.css';
 import 'antd/dist/antd.css';
 
 let qualParede = 'primeiraParede';
-let resultadoTotalTinta;
+let resultadoTotalParedeM2;
 
 export const Cards = () => {
   const [value, setValue] = useState({
@@ -38,7 +38,7 @@ export const Cards = () => {
 
   function calcularQtdLatasTintas() {
     let lata05 = 0, lata25 = 0, lata36 = 0, lata18 = 0;
-    let litroTintas = resultadoTotalTinta / 5;
+    let litroTintas = resultadoTotalParedeM2 / 5;
     while (litroTintas > 0) {
       if (litroTintas >= 18) {
         litroTintas = litroTintas - 18
@@ -193,9 +193,9 @@ export const Cards = () => {
           const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
           const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
           const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
-          const resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
+          resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
           console.log('resultadoTotalParedeM2 :', resultadoTotalParedeM2);
-          resultadoTotalTinta = resultadoTotalParedeM2 / 5;
+          const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
           console.log('resultadoTotalTinta :', resultadoTotalTinta);
           calcularQtdLatasTintas();
         }}>Calcular</button>
