@@ -148,7 +148,8 @@ export const Cards = () => {
   function modal() {
     return (
       <Modal title="Medida da parede" visible={isModalVisible} onOk={() => {
-        if (value[qualParede].altura > 0 && value[qualParede].largura > 0) {
+        if ((value[qualParede].altura && value[qualParede].largura) > 0
+            && (value[qualParede].altura && value[qualParede].largura) <= 15) {
           handleOk()
         } else {
           window.alert('Altura ou Largura incorreto');
