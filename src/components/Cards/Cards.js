@@ -14,6 +14,8 @@ let resultadoTotalParedeM2;
 
 export const Cards = () => {
   const dispatch = useDispatch();
+  const positionParede = ['Primeira Parede', 'Segunda Parede', 'Terceira Parede', 'Quarta Parede'];
+  const paredes = ['primeiraParede', 'segundaParede', 'terceiraParede', 'quartaParede'];
   const [value, setValue] = useState({
     primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
     segundaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
@@ -28,7 +30,7 @@ export const Cards = () => {
     terceiraParede: false,
     quartaParede: false,
   });
-
+  
   const showModal = (event) => {
     setIsModalVisible(true);
     qualParede = event.target.getAttribute('name');
@@ -79,7 +81,6 @@ export const Cards = () => {
     setRenderTextButton((oldState) => {
       return { ...oldState, [qualParede]: true };
     });
-    
     setIsModalVisible(false);
   }
   
@@ -142,11 +143,33 @@ export const Cards = () => {
     } else {
       window.alert('Adicione pelo menos 1(uma) Parede!');
     }
-  }
+  };
 
-  const paredes = ['primeiraParede', 'segundaParede', 'terceiraParede', 'quartaParede'];
-  const positionParede = ['Primeira Parede', 'Segunda Parede', 'Terceira Parede', 'Quarta Parede'];
-
+  function modal() {
+    return (
+      <Modal title="Basic Modal" visible={isModalVisible} onOk={() => {
+        if (value[qualParede].altura > 0 && value[qualParede].largura > 0) {
+          handleOk()
+        } else {
+          window.alert('Altura ou Largura incorreto');
+        }
+        }} onCancel={handleCancel}>
+        <label>Altura da parede
+          <input value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required step="0.1"/>
+        </label>
+        <label>Largura da parede
+          <input value={value[qualParede].largura} type="number" name="largura" min="1" max="15" onChange={onChange} required step="0.1"/>
+        </label>
+        <label >Quantas portas
+          <input value={value[qualParede].porta} name="porta" onChange={onChange} min="0"  max="3" type="number"/>
+        </label>
+        <label >Quantas janelas
+          <input value={value[qualParede].janela} name="janela" onChange={onChange} min="0" max="3" type="number"/>
+        </label>
+      </Modal>
+    );
+  };
+  
   return (
     <div className="card">
       <div className="paredes">
@@ -167,31 +190,11 @@ export const Cards = () => {
             </div>
           )
         })}
-
-        <Modal title="Basic Modal" visible={isModalVisible} onOk={() => {
-          if (value[qualParede].altura > 0 && value[qualParede].largura > 0) {
-            handleOk()
-          } else {
-            window.alert('Altura ou Largura incorreto');
-          }
-          }} onCancel={handleCancel}>
-          <label>Altura da parede
-            <input value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required step="0.1"/>
-          </label>
-          <label>Largura da parede
-            <input value={value[qualParede].largura} type="number" name="largura" min="1" max="15" onChange={onChange} required step="0.1"/>
-          </label>
-          <label >Quantas portas
-            <input value={value[qualParede].porta} name="porta" onChange={onChange} min="0"  max="3" type="number"/>
-          </label>
-          <label >Quantas janelas
-            <input value={value[qualParede].janela} name="janela" onChange={onChange} min="0" max="3" type="number"/>
-          </label>
-        </Modal>
+        {modal()} 
       </div>
       <div>
         <button onClick={onClickResult}>Calcular</button>
       </div>
     </div>
   );
-}
+};

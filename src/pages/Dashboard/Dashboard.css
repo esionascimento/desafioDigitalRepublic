@@ -1,0 +1,20 @@
+.container-pai {
+  display: flex;
+  margin: 40px auto;
+  border: 2px solid silver;
+  width: 80%;
+  border-radius: 10px;
+  background-color: #fff;
+  /* box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); */
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+.text {
+  margin: 10px;
+  text-align: justify;
+}

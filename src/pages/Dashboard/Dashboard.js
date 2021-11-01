@@ -2,13 +2,15 @@ import React from 'react';
 
 import { Cards } from '../../components/Cards/Cards';
 
+import './Dashboard.css';
+
 export function Dashboard() {
   return (
-    <div>
-      <div>
-        <p>Cada litro de tinta é capaz de pintar 5 metros quadrados</p>
-        <p>Não considerar teto nem piso</p>
-        <p>As variações de tamanho das latas de tinta são: 0,5L; 2,5L; 3,6L; 18L</p>
+    <div className="container-pai">
+      <div className="text">
+        <h1>Calculadora de Tinta</h1>
+        <p>Simulador de Tinta para estimar Litros nescessario para pintura de uma parede</p>
+        <p>Não precisa nescessariamente ter as medidas das 4 paredes, uma parede já é nescessario</p>
       </div>
       <Cards />
     </div>

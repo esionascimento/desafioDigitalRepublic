@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { actionLata05, actionLata25, actionLata36, actionLata18 } from '../../store/Calcular/CalcularAction';
 
-export function CalcularResultado() {
-  console.log('oj');
-  const dispatch = useDispatch()
+
+export function Resultado() {
+  const dispatch = useDispatch();
   const { resultadoTotalParedeM2 } = useSelector((state) => state.simulador);
+  /* const { lata05, lata25, lata36, lata18 } = useSelector((state) => state.calcular); */
   
   function calcularQtdLatasTintas() {
     let lata05 = 0, lata25 = 0, lata36 = 0, lata18 = 0;
@@ -41,8 +42,9 @@ export function CalcularResultado() {
   }
 
   return (
-    <div>{calcularQtdLatasTintas()}</div>
-    
+    <div>
+      {calcularQtdLatasTintas}
+    </div>
   );
 };
 
