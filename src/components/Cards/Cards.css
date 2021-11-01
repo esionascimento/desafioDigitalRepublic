@@ -8,7 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
-  border: 1px solid silver;
+
 }
 .item {
   /*https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row*/

@@ -2,21 +2,17 @@ import { useState } from 'react';
 import  { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
-import { useSelector } from 'react-redux';
-
 
 import './Cards.css';
 import 'antd/dist/antd.css';
 
 import { Calcular } from '../../store/Simulador/SimuladorAction';
-/* import { CalcularResultado } from '../Calcular/Calcular'; */
 import { actionLata05, actionLata25, actionLata36, actionLata18 } from '../../store/Calcular/CalcularAction';
 
 let qualParede = 'primeiraParede';
 let resultadoTotalParedeM2;
 
 export const Cards = () => {
-  const { resultadoLatasM2 } = useSelector((state) => state.calcular);
   const dispatch = useDispatch();
   const [value, setValue] = useState({
     primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
@@ -66,19 +62,15 @@ export const Cards = () => {
       }
     }
     if (lata05 > 0) {
-      console.log(`Precisa de ${lata05} latas de 0.5L`);
       dispatch(actionLata05(lata05));
     }
     if (lata25 > 0) {
-      console.log(`Precisa de ${lata25} latas de 2.5L`);
       dispatch(actionLata25(lata25));
     }
     if (lata36 > 0) {
-      console.log(`Precisa de ${lata36} latas de 3.6L`);
       dispatch(actionLata36(lata36));
     }
     if (lata18 > 0) {
-      console.log(`Precisa de ${lata18} latas de 18L`);
       dispatch(actionLata18(lata18));
     }
   }
@@ -137,22 +129,38 @@ export const Cards = () => {
     return <Redirect to="/dashboard/resultado" />
   }
 
-  function renderDados(a) {
-    console.log('a :', a);
+  function renderDados(parede) {
     return (
       <div>
-        <span>Altura: {value[a].altura}</span>
-        <span>Largura: {value[a].largura}</span>
-        <span>Janela: {value[a].janela}</span>
-        <span>Porta: {value[a].porta}</span>
+        <span>Altura: {value[parede].altura}</span>
+        <span>Largura: {value[parede].largura}</span>
+        <span>Janela: {value[parede].janela}</span>
+        <span>Porta: {value[parede].porta}</span>
       </div>
     );
   };
 
+  function onClickResult() {
+    if (renderTextButton.primeiraParede || renderTextButton.segundaParede
+        || renderTextButton.terceiraParede || renderTextButton.quartaParede) {
+      const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
+      const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
+      const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
+      const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
+      resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
+  
+      dispatch(Calcular(resultadoTotalParedeM2))
+      setRedirect(true);
+      calcularQtdLatasTintas();
+    } else {
+      window.alert('Adicione pelo menos 1(uma) Parede!');
+    }
+  }
+
   return (
     <div className="card">
       <div className="paredes">
-        <div name="pare" className="item">
+        <div className="item">
           { renderTextButton.primeiraParede ?
               renderDados('primeiraParede')
            : null  
@@ -226,21 +234,7 @@ export const Cards = () => {
         </Modal>
       </div>
       <div>
-        <button onClick={()=> {
-          const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
-          const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
-          const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
-          const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
-          resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
-          console.log('resultadoTotalParedeM2 :', resultadoTotalParedeM2);
-          const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
-          console.log('resultadoTotalTinta :', resultadoTotalTinta);
-          dispatch(Calcular(resultadoTotalParedeM2))
-          /* CalcularResultado(); */
-          /* return <Redirect to="/dashboard/resultado" /> */
-          setRedirect(true);
-          calcularQtdLatasTintas();
-        }}>Calcular</button>
+        <button onClick={onClickResult}>Calcular</button>
       </div>
     </div>
   );
