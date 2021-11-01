@@ -18,8 +18,19 @@
   text-align: center;
 }
 
-button {
+.buttonCalcular {
   margin: 20px auto;
+}
+
+.label {
+  margin-left: 20px;
+  display: inline-block;
+  text-align:start;
+  width:100%;
+}
+
+.input {
+  margin: 10px;
 }
 
 input:in-range {
