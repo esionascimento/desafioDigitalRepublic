@@ -46,33 +46,40 @@ export const Cards = () => {
     });
     console.log(value);
   }
+
+  function chaveRenderTextButton() {
+    if (qualParede === 'primeiraParede') {
+      setRenderTextButton((oldState) => {
+        return { ...oldState, primeiraParede: !oldState.primeiraParede };
+      });
+    } else if (qualParede === 'segundaParede') {
+      setRenderTextButton((oldState) => {
+        return { ...oldState, segundaParede: !oldState.segundaParede };
+      });
+    } else if (qualParede === 'terceiraParede') {
+      setRenderTextButton((oldState) => {
+        return { ...oldState, terceiraParede: !oldState.terceiraParede };
+      });
+    } else if (qualParede === 'quartaParede') {
+      setRenderTextButton((oldState) => {
+        return { ...oldState, quartaParede: !oldState.quartaParede };
+      });
+    }
+    setIsModalVisible(false);
+  }
   
   function paredeComPorta() {
     if (value[qualParede].janela > 0 || value[qualParede].porta > 0) {
+      console.log('cheguei 1');
       const resultAlturaLargura = (value.primeiraParede.altura * value.primeiraParede.largura) / 2;
       const resultPortaJanela = ( 1.52 * value[qualParede].porta) + (2.4 * value[qualParede].janela);
       if (resultPortaJanela <= resultAlturaLargura) {
-        if (qualParede === 'primeiraParede') {
-          setRenderTextButton((oldState) => {
-            return { ...oldState, primeiraParede: !oldState.primeiraParede };
-          });
-        } else if (qualParede === 'segundaParede') {
-          setRenderTextButton((oldState) => {
-            return { ...oldState, segundaParede: !oldState.segundaParede };
-          });
-        } else if (qualParede === 'terceiraParede') {
-          setRenderTextButton((oldState) => {
-            return { ...oldState, terceiraParede: !oldState.terceiraParede };
-          });
-        } else if (qualParede === 'quartaParede') {
-          setRenderTextButton((oldState) => {
-            return { ...oldState, quartaParede: !oldState.quartaParede };
-          });
-        }
-        setIsModalVisible(false);
+        chaveRenderTextButton();
       } else {
         window.alert('O total de área das portas e janelas deve ser no máximo 50% da área de parede');
       }
+    } else {
+      chaveRenderTextButton();
     }
   }
   
@@ -146,10 +153,10 @@ export const Cards = () => {
           }
           }} onCancel={handleCancel}>
           <label>Altura da parede
-            <input value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required/>
+            <input value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required step="0.1"/>
           </label>
           <label>Largura da parede
-            <input value={value[qualParede].largura} type="number" name="largura" min="1" max="15" onChange={onChange} required/>
+            <input value={value[qualParede].largura} type="number" name="largura" min="1" max="15" onChange={onChange} required step="0.1"/>
           </label>
           <label >Quantas portas
             <input value={value[qualParede].porta} name="porta" onChange={onChange} min="0"  max="3" type="number"/>
@@ -166,6 +173,7 @@ export const Cards = () => {
           const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
           const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
           const resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
+          console.log('resultadoTotalParedeM2 :', resultadoTotalParedeM2);
           const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
           console.log('resultadoTotalTinta :', resultadoTotalTinta);
         }}>Calcular</button>
