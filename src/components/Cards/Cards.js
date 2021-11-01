@@ -31,6 +31,7 @@ export const Cards = () => {
     console.log(value.primeiraParede);
   } */
   const showModal = (event) => {
+    console.log('event :', event);
     setIsModalVisible(true);
     console.log('event.target.getAttribute', event.target.getAttribute('name'));
     qualParede = event.target.getAttribute('name');
@@ -82,7 +83,7 @@ export const Cards = () => {
       </div>
       <div className="paredes">
         <div name="pare" className="item">
-          <Button type="primary" onClick={showModal}>
+          <Button name="primeiraParede" type="primary" onClick={showModal}>
             {renderTextButton.primeiraParede ?
                 <div name="primeiraParede">Ok
                   {/* <p>Altura: {value.primeiraParede.altura}</p>
@@ -95,7 +96,7 @@ export const Cards = () => {
           </Button>
         </div>
         <div className="item">
-          <Button type="primary" onClick={showModal}>
+          <Button name="segundaParede" type="primary" onClick={showModal}>
             {renderTextButton.segundaParede ?
                 <div name="segundaParede">Ok
                 </div>
@@ -104,7 +105,7 @@ export const Cards = () => {
           </Button>
         </div>
         <div className="item">
-          <Button type="primary" onClick={showModal}>
+          <Button name="terceiraParede" type="primary" onClick={showModal}>
             {renderTextButton.terceiraParede ?
                 <div name="terceiraParede">Ok
                 </div>
@@ -113,7 +114,7 @@ export const Cards = () => {
           </Button>
         </div>
         <div className="item">
-          <Button type="primary" onClick={showModal}>
+          <Button name="quartaParede" type="primary" onClick={showModal}>
             {renderTextButton.quartaParede ?
                 <div name="quartaParede">Ok
                 </div>
@@ -123,22 +124,29 @@ export const Cards = () => {
         </div>
         <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <label>Altura da parede
-            <input type="number" name="altura" onChange={onChange} required/>
+            <input value="1" type="number" name="altura" onChange={onChange} min="1" max="15" required/>
           </label>
           <label>Largura da parede
-            <input type="number" name="largura" onChange={onChange} required/>
+            <input type="number" name="largura" min="1" max="15" onChange={onChange} required/>
           </label>
           <label >Quantas portas
-            <input name="porta" onChange={onChange} type="number"/>
+            <input name="porta" onChange={onChange} min="0" type="number"/>
           </label>
           <label >Quantas janelas
-            <input name="janela" onChange={onChange} type="number"/>
+            <input name="janela" onChange={onChange} min="0" type="number"/>
           </label>
         </Modal>
       </div>
       <div>
         <button onClick={()=> {
-          
+          const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
+          console.log('parede1 :', parede1);
+          const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
+          const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
+          const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
+          const resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
+          const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
+          console.log('resultadoTotalTinta :', resultadoTotalTinta);
         }}>Calcular</button>
       </div>
     </div>
