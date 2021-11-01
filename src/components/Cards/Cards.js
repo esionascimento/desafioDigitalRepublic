@@ -84,7 +84,12 @@ export const Cards = () => {
         <div name="pare" className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.primeiraParede ?
-              <div name="primeiraParede">{value.primeiraParede.altura}</div>
+                <div name="primeiraParede">Ok
+                  {/* <p>Altura: {value.primeiraParede.altura}</p>
+                  <p>Largura: {value.primeiraParede.largura}</p>
+                  <p>Janela: {value.primeiraParede.janela}</p>
+                  <p>Porta: {value.primeiraParede.porta}</p> */}
+                </div>
               : <p name="primeiraParede">Primeira Parede</p>
             }
           </Button>
@@ -92,7 +97,8 @@ export const Cards = () => {
         <div className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.segundaParede ?
-                <p name="segundaParede">deu certo segunda parede</p>
+                <div name="segundaParede">Ok
+                </div>
               : <p name="segundaParede">Segunda Parede</p>
             }
           </Button>
@@ -100,7 +106,8 @@ export const Cards = () => {
         <div className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.terceiraParede ?
-                <p name="terceiraParede">deu certo segunda parede</p>
+                <div name="terceiraParede">Ok
+                </div>
               : <p name="terceiraParede">Terceira Parede</p>
             }
           </Button>
@@ -108,8 +115,7 @@ export const Cards = () => {
         <div className="item">
           <Button type="primary" onClick={showModal}>
             {renderTextButton.quartaParede ?
-                <div name="quartaParede">
-                  a
+                <div name="quartaParede">Ok
                 </div>
               : <p name="quartaParede">Quarta Parede</p>
             }
@@ -117,10 +123,10 @@ export const Cards = () => {
         </div>
         <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <label>Altura da parede
-            <input name="altura" onChange={onChange}/>
+            <input type="number" name="altura" onChange={onChange} required/>
           </label>
           <label>Largura da parede
-            <input name="largura" onChange={onChange}/>
+            <input type="number" name="largura" onChange={onChange} required/>
           </label>
           <label >Quantas portas
             <input name="porta" onChange={onChange} type="number"/>
@@ -129,6 +135,11 @@ export const Cards = () => {
             <input name="janela" onChange={onChange} type="number"/>
           </label>
         </Modal>
+      </div>
+      <div>
+        <button onClick={()=> {
+          
+        }}>Calcular</button>
       </div>
     </div>
   );
