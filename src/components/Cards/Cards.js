@@ -1,16 +1,23 @@
 import { useState } from 'react';
+import  { Redirect } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Modal, Button } from 'antd';
+import { useSelector } from 'react-redux';
+
 
 import './Cards.css';
 import 'antd/dist/antd.css';
 
 import { Calcular } from '../../store/Simulador/SimuladorAction';
+/* import { CalcularResultado } from '../Calcular/Calcular'; */
+import { actionLata05, actionLata25, actionLata36, actionLata18 } from '../../store/Calcular/CalcularAction';
 
 let qualParede = 'primeiraParede';
 let resultadoTotalParedeM2;
 
 export const Cards = () => {
+  const { resultadoLatasM2 } = useSelector((state) => state.calcular);
+  console.log('resultadoLatasM2 :', resultadoLatasM2);
   const dispatch = useDispatch();
   const [value, setValue] = useState({
     primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
@@ -18,6 +25,7 @@ export const Cards = () => {
     terceiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
     quartaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
   });
+  const [redirect, setRedirect] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [renderTextButton, setRenderTextButton] = useState({
     primeiraParede: false,
@@ -25,7 +33,7 @@ export const Cards = () => {
     terceiraParede: false,
     quartaParede: false,
   });
-  
+
   const showModal = (event) => {
     setIsModalVisible(true);
     qualParede = event.target.getAttribute('name');
@@ -60,15 +68,19 @@ export const Cards = () => {
     }
     if (lata05 > 0) {
       console.log(`Precisa de ${lata05} latas de 0.5L`);
+      dispatch(actionLata05(lata05));
     }
     if (lata25 > 0) {
       console.log(`Precisa de ${lata25} latas de 2.5L`);
+      dispatch(actionLata25(lata25));
     }
     if (lata36 > 0) {
       console.log(`Precisa de ${lata36} latas de 3.6L`);
+      dispatch(actionLata36(lata36));
     }
     if (lata18 > 0) {
       console.log(`Precisa de ${lata18} latas de 18L`);
+      dispatch(actionLata18(lata18));
     }
   }
 
@@ -121,6 +133,10 @@ export const Cards = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  if (redirect) {
+    return <Redirect to="/dashboard/resultado" />
+  }
 
   return (
     <div className="card">
@@ -216,6 +232,9 @@ export const Cards = () => {
           const resultadoTotalTinta = resultadoTotalParedeM2 / 5;
           console.log('resultadoTotalTinta :', resultadoTotalTinta);
           dispatch(Calcular(resultadoTotalParedeM2))
+          /* CalcularResultado(); */
+          /* return <Redirect to="/dashboard/resultado" /> */
+          setRedirect(true);
           calcularQtdLatasTintas();
         }}>Calcular</button>
       </div>

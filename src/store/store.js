@@ -1,9 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { SimuladorReducer } from './Simulador/SimuladorReducer';
 import thunk from 'redux-thunk';
 
+import { calcularLatasM2} from './Calcular/CalcularReducer';
+import { SimuladorReducer } from './Simulador/SimuladorReducer';
 
 const rootReducer = combineReducers({
+  calcular: calcularLatasM2,
   simulador: SimuladorReducer,
 })
 
