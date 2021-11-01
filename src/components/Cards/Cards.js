@@ -127,19 +127,33 @@ export const Cards = () => {
       </div>
       <div className="paredes">
         <div name="pare" className="item">
+          { renderTextButton.primeiraParede ?
+            <div>
+              <span>Altura: {value.primeiraParede.altura}</span>
+              <span>Largura: {value.primeiraParede.largura}</span>
+              <span>Janela: {value.primeiraParede.janela}</span>
+              <span>Porta: {value.primeiraParede.porta}</span>
+            </div>
+           : null  
+          }
           <Button name="primeiraParede" type="primary" onClick={showModal}>
             {renderTextButton.primeiraParede ?
                 <div name="primeiraParede">Editar primeira parede
-                  {/* <p>Altura: {value.primeiraParede.altura}</p>
-                  <p>Largura: {value.primeiraParede.largura}</p>
-                  <p>Janela: {value.primeiraParede.janela}</p>
-                  <p>Porta: {value.primeiraParede.porta}</p> */}
                 </div>
               : <p name="primeiraParede">Primeira Parede</p>
             }
           </Button>
         </div>
         <div className="item">
+            { renderTextButton.segundaParede ?
+            <div>
+              <span>Altura: {value.segundaParede.altura}</span>
+              <span>Largura: {value.segundaParede.largura}</span>
+              <span>Janela: {value.segundaParede.janela}</span>
+              <span>Porta: {value.segundaParede.porta}</span>
+            </div>
+           : null  
+          }
           <Button name="segundaParede" type="primary" onClick={showModal}>
             {renderTextButton.segundaParede ?
                 <div name="segundaParede">Editar segunda parede

@@ -29,3 +29,7 @@ input:in-range {
 input:out-of-range {
   border: 2px solid #DF6464;
 }
+
+span {
+  margin: 0 5px;
+}
