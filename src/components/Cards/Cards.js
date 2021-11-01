@@ -4,14 +4,14 @@ import { Modal, Button } from 'antd';
 import './Cards.css';
 import 'antd/dist/antd.css';
 
-let qualParede;
+let qualParede = 'primeiraParede';
 
 export const Cards = () => {
   const [value, setValue] = useState({
-    primeiraParede: {altura: '', largura: '', janela: '', porta: ''},
-    segundaParede: {altura: '', largura: '', janela: '', porta: ''},
-    terceiraParede: {altura: '', largura: '', janela: '', porta: ''},
-    quartaParede: {altura: '', largura: '', janela: '', porta: ''},
+    primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+    segundaParede: {altura: 1, largura: 0, janela: 0, porta: 0},
+    terceiraParede: {altura: 1, largura: 0, janela: 0, porta: 0},
+    quartaParede: {altura: 1, largura: 0, janela: 0, porta: 0},
   });
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [renderTextButton, setRenderTextButton] = useState({
@@ -124,21 +124,22 @@ export const Cards = () => {
         </div>
         <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
           <label>Altura da parede
-            <input value="1" type="number" name="altura" onChange={onChange} min="1" max="15" required/>
+            <input value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required/>
           </label>
           <label>Largura da parede
-            <input type="number" name="largura" min="1" max="15" onChange={onChange} required/>
+            <input value={value[qualParede].largura} type="number" name="largura" min="1" max="15" onChange={onChange} required/>
           </label>
           <label >Quantas portas
-            <input name="porta" onChange={onChange} min="0" type="number"/>
+            <input value={value[qualParede].porta} name="porta" onChange={onChange} min="0" type="number"/>
           </label>
           <label >Quantas janelas
-            <input name="janela" onChange={onChange} min="0" type="number"/>
+            <input value={value[qualParede].janela} name="janela" onChange={onChange} min="0" type="number"/>
           </label>
         </Modal>
       </div>
       <div>
         <button onClick={()=> {
+          console.log('qualParede :', value[qualParede].altura);
           const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
           console.log('parede1 :', parede1);
           const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
