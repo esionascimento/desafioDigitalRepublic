@@ -21,3 +21,11 @@
 button {
   margin: 20px auto;
 }
+
+input:in-range {
+  border: 2px solid #22B07D;
+}
+
+input:out-of-range {
+  border: 2px solid #DF6464;
+}

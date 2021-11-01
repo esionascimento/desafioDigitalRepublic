@@ -9,9 +9,9 @@ let qualParede = 'primeiraParede';
 export const Cards = () => {
   const [value, setValue] = useState({
     primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
-    segundaParede: {altura: 1, largura: 0, janela: 0, porta: 0},
-    terceiraParede: {altura: 1, largura: 0, janela: 0, porta: 0},
-    quartaParede: {altura: 1, largura: 0, janela: 0, porta: 0},
+    segundaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+    terceiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+    quartaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
   });
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [renderTextButton, setRenderTextButton] = useState({
@@ -48,7 +48,6 @@ export const Cards = () => {
   }
   
   const handleOk = (event) => {
-    console.log('qualParede :', qualParede);
     if (qualParede === 'primeiraParede') {
       setRenderTextButton((oldState) => {
         return { ...oldState, primeiraParede: !oldState.primeiraParede };
@@ -66,7 +65,6 @@ export const Cards = () => {
         return { ...oldState, quartaParede: !oldState.quartaParede };
       });
     }
-    console.log('event', event)
     setIsModalVisible(false);
   };
 
@@ -122,7 +120,13 @@ export const Cards = () => {
             }
           </Button>
         </div>
-        <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Basic Modal" visible={isModalVisible} onOk={() => {
+          if (value[qualParede].altura > 0 && value[qualParede].largura > 0) {
+            handleOk()
+          } else {
+            window.alert('Altura ou Largura incorreto');
+          }
+          }} onCancel={handleCancel}>
           <label>Altura da parede
             <input value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required/>
           </label>
@@ -139,7 +143,6 @@ export const Cards = () => {
       </div>
       <div>
         <button onClick={()=> {
-          console.log('qualParede :', value[qualParede].altura);
           const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
           console.log('parede1 :', parede1);
           const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
