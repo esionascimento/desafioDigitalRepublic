@@ -48,24 +48,32 @@ export const Cards = () => {
   }
   
   function paredeComPorta() {
-    if (qualParede === 'primeiraParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, primeiraParede: !oldState.primeiraParede };
-      });
-    } else if (qualParede === 'segundaParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, segundaParede: !oldState.segundaParede };
-      });
-    } else if (qualParede === 'terceiraParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, terceiraParede: !oldState.terceiraParede };
-      });
-    } else if (qualParede === 'quartaParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, quartaParede: !oldState.quartaParede };
-      });
+    if (value[qualParede].janela > 0 || value[qualParede].porta > 0) {
+      const resultAlturaLargura = (value.primeiraParede.altura * value.primeiraParede.largura) / 2;
+      const resultPortaJanela = ( 1.52 * value[qualParede].porta) + (2.4 * value[qualParede].janela);
+      if (resultPortaJanela <= resultAlturaLargura) {
+        if (qualParede === 'primeiraParede') {
+          setRenderTextButton((oldState) => {
+            return { ...oldState, primeiraParede: !oldState.primeiraParede };
+          });
+        } else if (qualParede === 'segundaParede') {
+          setRenderTextButton((oldState) => {
+            return { ...oldState, segundaParede: !oldState.segundaParede };
+          });
+        } else if (qualParede === 'terceiraParede') {
+          setRenderTextButton((oldState) => {
+            return { ...oldState, terceiraParede: !oldState.terceiraParede };
+          });
+        } else if (qualParede === 'quartaParede') {
+          setRenderTextButton((oldState) => {
+            return { ...oldState, quartaParede: !oldState.quartaParede };
+          });
+        }
+        setIsModalVisible(false);
+      } else {
+        window.alert('O total de área das portas e janelas deve ser no máximo 50% da área de parede');
+      }
     }
-    setIsModalVisible(false);
   }
   
   const handleOk = () => {
@@ -154,7 +162,6 @@ export const Cards = () => {
       <div>
         <button onClick={()=> {
           const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
-          console.log('parede1 :', parede1);
           const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
           const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
           const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
