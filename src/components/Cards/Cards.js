@@ -93,7 +93,7 @@ export const Cards = () => {
         <div name="pare" className="item">
           <Button name="primeiraParede" type="primary" onClick={showModal}>
             {renderTextButton.primeiraParede ?
-                <div name="primeiraParede">Ok
+                <div name="primeiraParede">Editar primeira parede
                   {/* <p>Altura: {value.primeiraParede.altura}</p>
                   <p>Largura: {value.primeiraParede.largura}</p>
                   <p>Janela: {value.primeiraParede.janela}</p>
@@ -106,7 +106,7 @@ export const Cards = () => {
         <div className="item">
           <Button name="segundaParede" type="primary" onClick={showModal}>
             {renderTextButton.segundaParede ?
-                <div name="segundaParede">Ok
+                <div name="segundaParede">Editar segunda parede
                 </div>
               : <p name="segundaParede">Segunda Parede</p>
             }
@@ -115,7 +115,7 @@ export const Cards = () => {
         <div className="item">
           <Button name="terceiraParede" type="primary" onClick={showModal}>
             {renderTextButton.terceiraParede ?
-                <div name="terceiraParede">Ok
+                <div name="terceiraParede">Editar terceira parede
                 </div>
               : <p name="terceiraParede">Terceira Parede</p>
             }
@@ -124,7 +124,7 @@ export const Cards = () => {
         <div className="item">
           <Button name="quartaParede" type="primary" onClick={showModal}>
             {renderTextButton.quartaParede ?
-                <div name="quartaParede">Ok
+                <div name="quartaParede">Editar quarta parede
                 </div>
               : <p name="quartaParede">Quarta Parede</p>
             }
