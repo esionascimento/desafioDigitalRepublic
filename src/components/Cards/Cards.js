@@ -76,23 +76,10 @@ export const Cards = () => {
   }
 
   function chaveRenderTextButton() {
-    if (qualParede === 'primeiraParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, primeiraParede: !oldState.primeiraParede };
-      });
-    } else if (qualParede === 'segundaParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, segundaParede: !oldState.segundaParede };
-      });
-    } else if (qualParede === 'terceiraParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, terceiraParede: !oldState.terceiraParede };
-      });
-    } else if (qualParede === 'quartaParede') {
-      setRenderTextButton((oldState) => {
-        return { ...oldState, quartaParede: !oldState.quartaParede };
-      });
-    }
+    setRenderTextButton((oldState) => {
+      return { ...oldState, [qualParede]: true };
+    });
+    
     setIsModalVisible(false);
   }
   
