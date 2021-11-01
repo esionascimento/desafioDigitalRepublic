@@ -22,6 +22,19 @@
   margin: 20px auto;
 }
 
+hr:before {
+  content: '';
+  display: block;
+  width: 250px;
+  height: 1px;
+  background: silver;
+  margin: 0 auto;
+}
+
+.btn {
+  margin-left: 5px;
+}
+
 .label {
   margin-left: 20px;
   display: inline-block;
@@ -43,4 +56,23 @@ input:out-of-range {
 
 span {
   margin: 0 5px;
+}
+
+@media screen and (max-width: 350px) {
+  hr:before {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 1px;
+    background: silver;
+    margin: 0 auto;
+  }
+  .buttonCalcular{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .btn {
+    margin-bottom: 5px;
+  }
 }

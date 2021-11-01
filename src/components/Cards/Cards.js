@@ -11,17 +11,18 @@ import { actionLata05, actionLata25, actionLata36, actionLata18 } from '../../st
 
 let qualParede = 'primeiraParede';
 let resultadoTotalParedeM2;
+const INITIAL_PAREDES = {
+  primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+  segundaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+  terceiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+  quartaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
+}
 
 export const Cards = () => {
   const dispatch = useDispatch();
   const positionParede = ['Primeira Parede', 'Segunda Parede', 'Terceira Parede', 'Quarta Parede'];
   const paredes = ['primeiraParede', 'segundaParede', 'terceiraParede', 'quartaParede'];
-  const [value, setValue] = useState({
-    primeiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
-    segundaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
-    terceiraParede: {altura: 0, largura: 0, janela: 0, porta: 0},
-    quartaParede: {altura: 0, largura: 0, janela: 0, porta: 0},
-  });
+  const [value, setValue] = useState(INITIAL_PAREDES);
   const [redirect, setRedirect] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [renderTextButton, setRenderTextButton] = useState({
@@ -77,11 +78,20 @@ export const Cards = () => {
     }
   }
 
-  function chaveRenderTextButton() {
-    setRenderTextButton((oldState) => {
-      return { ...oldState, [qualParede]: true };
-    });
-    setIsModalVisible(false);
+  function chaveRenderTextButton(value, chave) {
+    if (chave === 1) {
+      paredes.map((parede) => {
+        setRenderTextButton((oldState) => {
+          return { ...oldState, [parede]: value };
+        });
+        return 0;
+      })
+    } else if (chave === 2) {
+      setRenderTextButton((oldState) => {
+        return { ...oldState, [qualParede]: value };
+      });
+      setIsModalVisible(false);
+    }
   }
   
   function paredeComPorta() {
@@ -90,12 +100,12 @@ export const Cards = () => {
       const resultAlturaLargura = (value.primeiraParede.altura * value.primeiraParede.largura) / 2;
       const resultPortaJanela = ( 1.52 * value[qualParede].porta) + (2.4 * value[qualParede].janela);
       if (resultPortaJanela <= resultAlturaLargura) {
-        chaveRenderTextButton();
+        chaveRenderTextButton(true, 2);
       } else {
         window.alert('O total de área das portas e janelas deve ser no máximo 50% da área de parede');
       }
     } else {
-      chaveRenderTextButton();
+      chaveRenderTextButton(true, 2);
     }
   }
   
@@ -145,6 +155,11 @@ export const Cards = () => {
     }
   };
 
+  function onClickClearAll() {
+    setValue(INITIAL_PAREDES);
+    chaveRenderTextButton(false, 1);
+  }
+
   function modal() {
     return (
       <Modal title="Medida da parede" visible={isModalVisible} onOk={() => {
@@ -193,7 +208,9 @@ export const Cards = () => {
         })}
         {modal()} 
       </div>
+      <hr></hr>
       <div className="buttonCalcular">
+        <button class="btn btn-primary" onClick={onClickClearAll}>Apagar tudo</button>
         <button class="btn btn-primary" onClick={onClickResult}>Calcular</button>
       </div>
     </div>
