@@ -8,6 +8,7 @@ import 'antd/dist/antd.css';
 
 import { Calcular } from '../../store/Simulador/SimuladorAction';
 import { actionLata05, actionLata25, actionLata36, actionLata18 } from '../../store/Calcular/CalcularAction';
+import { calcularQtdLatasTintas } from '../Calcular/Calcular';
 
 let qualParede = 'primeiraParede';
 let resultadoTotalParedeM2;
@@ -46,38 +47,7 @@ export const Cards = () => {
     });
   }
 
-  function calcularQtdLatasTintas() {
-    let lata05 = 0, lata25 = 0, lata36 = 0, lata18 = 0;
-    let litroTintas = resultadoTotalParedeM2 / 5;
-    while (litroTintas > 0) {
-      if (litroTintas >= 18) {
-        litroTintas = litroTintas - 18
-        lata18 += 1;
-      } else if (litroTintas >= 3.6) {
-        litroTintas = litroTintas - 3.6;
-        lata36 += 1;
-      } else if (litroTintas >= 2.5) {
-        litroTintas = litroTintas - 2.5;
-        lata25 += 1;
-      } else {
-        litroTintas = litroTintas - 0.5;
-        lata05 += 1;
-      }
-    }
-    if (lata05 > 0) {
-      dispatch(actionLata05(lata05));
-    }
-    if (lata25 > 0) {
-      dispatch(actionLata25(lata25));
-    }
-    if (lata36 > 0) {
-      dispatch(actionLata36(lata36));
-    }
-    if (lata18 > 0) {
-      dispatch(actionLata18(lata18));
-    }
-  }
-
+  
   function chaveRenderTextButton(value, chave) {
     if (chave === 1) {
       paredes.map((parede) => {
@@ -94,9 +64,8 @@ export const Cards = () => {
     }
   }
   
-  function paredeComPorta() {
+  function handleOk() {
     if (value[qualParede].janela > 0 || value[qualParede].porta > 0) {
-      console.log('cheguei 1');
       const resultAlturaLargura = (value.primeiraParede.altura * value.primeiraParede.largura) / 2;
       const resultPortaJanela = ( 1.52 * value[qualParede].porta) + (2.4 * value[qualParede].janela);
       if (resultPortaJanela <= resultAlturaLargura) {
@@ -109,11 +78,11 @@ export const Cards = () => {
     }
   }
   
-  const handleOk = () => {
+  const paredeComPorta = () => {
     if (value[qualParede].porta === 0) {
-      paredeComPorta();
+      handleOk();
     } else if (value[qualParede].porta > 0 && value[qualParede].altura > 2.2) {
-      paredeComPorta();
+      handleOk();
     } else {
       window.alert('A altura de paredes com porta deve ser, no mínimo, 30 centímetros maior que a altura da porta');
     }
@@ -149,7 +118,7 @@ export const Cards = () => {
   
       dispatch(Calcular(resultadoTotalParedeM2))
       setRedirect(true);
-      calcularQtdLatasTintas();
+      calcularQtdLatasTintas(dispatch, resultadoTotalParedeM2, actionLata05, actionLata25, actionLata36, actionLata18);
     } else {
       window.alert('Adicione pelo menos 1(uma) Parede!');
     }
@@ -158,18 +127,27 @@ export const Cards = () => {
   function onClickClearAll() {
     setValue(INITIAL_PAREDES);
     chaveRenderTextButton(false, 1);
+  };
+
+  function verificaLargura() {
+    if ((value[qualParede].largura > 0) && (value[qualParede].largura) <= 15) {
+      paredeComPorta()
+    } else {
+      window.alert('Largura incorreto');
+    }
+  }
+
+  function verificaAltura() {
+    if ((value[qualParede].altura > 0) && (value[qualParede].altura) <= 15) {
+      verificaLargura()
+    } else {
+      window.alert('Altura incorreto');
+    }
   }
 
   function modal() {
     return (
-      <Modal title="Medida da parede" visible={isModalVisible} onOk={() => {
-        if ((value[qualParede].altura && value[qualParede].largura) > 0
-            && (value[qualParede].altura && value[qualParede].largura) <= 15) {
-          handleOk()
-        } else {
-          window.alert('Altura ou Largura incorreto');
-        }
-        }} onCancel={handleCancel}>
+      <Modal title="Medida da parede" visible={isModalVisible} onOk={verificaAltura} onCancel={handleCancel}>
         <label className="label" forHTML="altura">Altura da parede 
           <input id="altura" className="input" value={value[qualParede].altura} type="number" name="altura" onChange={onChange} min="1" max="15" required step="0.1"/>
         </label>
