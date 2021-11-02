@@ -1,0 +1,29 @@
+h2 {
+  margin-top: 25px;
+}
+
+.conteiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.conteiner-body {
+  display: flex;
+  width: 400px;
+  height: 200px;
+  border: 2px solid silver;
+  border-radius: 5px;
+  flex-direction: column;
+  padding: 20px;
+}
+
+
+.rodape {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  background-color: rgb(52, 41, 128);
+  width: 100%;
+}

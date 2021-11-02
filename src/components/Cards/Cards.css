@@ -8,7 +8,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 40px;
-  border: 1px solid silver;
+
 }
 .item {
   /*https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row*/
@@ -18,8 +18,32 @@
   text-align: center;
 }
 
-button {
+.buttonCalcular {
   margin: 20px auto;
+}
+
+hr:before {
+  content: '';
+  display: block;
+  width: 250px;
+  height: 1px;
+  background: silver;
+  margin: 0 auto;
+}
+
+.btn {
+  margin-left: 5px;
+}
+
+.label {
+  margin-left: 20px;
+  display: inline-block;
+  text-align:start;
+  width:100%;
+}
+
+.input {
+  margin: 10px;
 }
 
 input:in-range {
@@ -28,4 +52,27 @@ input:in-range {
 
 input:out-of-range {
   border: 2px solid #DF6464;
+}
+
+span {
+  margin: 0 5px;
+}
+
+@media screen and (max-width: 350px) {
+  hr:before {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 1px;
+    background: silver;
+    margin: 0 auto;
+  }
+  .buttonCalcular{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .btn {
+    margin-bottom: 5px;
+  }
 }
