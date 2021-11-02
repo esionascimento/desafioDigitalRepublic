@@ -1,10 +1,17 @@
 import React from "react";
+import { Router } from 'react-router-dom';
 import { render } from "@testing-library/react";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import { createMemoryHistory } from "history";
+import { Home } from "../pages/Home/Home.js";
+import '@testing-library/jest-dom';
 
 describe("Página Dashboard.js", () => {
-  it("", () => {
-    const { getAllByRole } = render(<Dashboard />);
-
+  const history = createMemoryHistory();
+  it("a", () => {
+    const { getByTestId } = render(
+      <Router history={history}>
+        <Home />
+      </Router>
+    );
   });
 });

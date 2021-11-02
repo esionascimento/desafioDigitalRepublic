@@ -1,6 +1,6 @@
 import React from "react";
 import { Router } from 'react-router-dom';
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Home } from "../pages/Home/Home.js";
 import '@testing-library/jest-dom';
@@ -9,17 +9,17 @@ describe("Página Home.js", () => {
   const history = createMemoryHistory();
   
   it("Testando: 2(Dois) inputs na página Home", () => {
-    const { getByText, getAllByRole } = render(
+    const { getByTestId } = render(
       <Router history={history}>
         <Home />
       </Router>
     );
 
-    const inputNode = screen.getByPlaceholderText('Senha')
-    expect(getByTestId('input')).toBeDisabled()
+    expect(getByTestId('input-email')).toBeEmptyDOMElement();
+    expect(getByTestId('input-password')).toBeEmptyDOMElement();
   });
   it("Testando: Rota atual está na página home", () => {
-    const { getByText, getAllByRole } = render(
+    const { getByText } = render(
       <Router history={history}>
         <Home />
       </Router>
@@ -29,10 +29,22 @@ describe("Página Home.js", () => {
     expect(titulo).toBeInTheDocument();
     expect(history.location.pathname).toBe('/');
   });
-  /* it("", () => {
+  /* it("Test: Redirecionar para a página dashboard ao clicar no botão Entrar", async () => {
+    const { getByText, getByTestId } = render(
+      <Router history={history}>
+        <Home />
+      </Router>
+    );
+    const email = getByTestId('input-email');
+    fireEvent.change(email, {target: {value: 'register@register.com.br'}});
 
-  });
-  it("", () => {
+    const password = getByTestId('input-password');
+    fireEvent.change(password, {target: {value: '123456'}});
 
+    const button = screen.getByRole('button', {name: /Entrar/i});
+    fireEvent.click(button);
+
+    const { pathname } = history.location;
+    await expect(pathname).toBe('/dashboard');
   }); */
 });
