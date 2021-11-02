@@ -15,5 +15,8 @@ Aplicação desenvolvidade com `ReactJS`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd calculartinta`
 
-2. Instale as dependências
-  * `npm install`
+2. Instale as dependências e inicialize o projeto
+ * Instale as dependências
+    * `npm install`
+ * Inicialize o projeto:
+    * `npm start` (uma nova página deve abrir no seu navegador)
