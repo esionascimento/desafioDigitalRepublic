@@ -1,17 +1,18 @@
 import React from "react";
 import { Router } from 'react-router-dom';
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { createMemoryHistory } from "history";
-import { Home } from "../pages/Home/Home.js";
+import { Dashboard } from "../pages/Dashboard/Dashboard.js";
 import '@testing-library/jest-dom';
 
 describe("Página Dashboard.js", () => {
   const history = createMemoryHistory();
-  it("a", () => {
+  it("Contem pelo menos dois texto", () => {
     const { getByTestId } = render(
       <Router history={history}>
-        <Home />
+        <Dashboard />
       </Router>
     );
+    expect(screen.getByText(/Simulador de Tinta para estimar Litros nescessario para pintura de uma parede/i)).toBeInTheDocument();
   });
 });

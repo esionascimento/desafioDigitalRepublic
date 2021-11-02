@@ -5,9 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 export const LoginAuth = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('token');
-  console.log('token :', token);
   const myDecodedToken = decodeToken(token);
-  console.log('myDecodedToken :', myDecodedToken);
   return (
     <Route
       {...rest}

@@ -1,6 +1,6 @@
 import React from "react";
 import { Router } from 'react-router-dom';
-import { render } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Home } from "../pages/Home/Home.js";
 import '@testing-library/jest-dom';
@@ -29,8 +29,8 @@ describe("Página Home.js", () => {
     expect(titulo).toBeInTheDocument();
     expect(history.location.pathname).toBe('/');
   });
-  /* it("Test: Redirecionar para a página dashboard ao clicar no botão Entrar", async () => {
-    const { getByText, getByTestId } = render(
+  it("Test: Redirecionar para a página dashboard ao clicar no botão Entrar", async () => {
+    const { getByTestId } = render(
       <Router history={history}>
         <Home />
       </Router>
@@ -44,7 +44,9 @@ describe("Página Home.js", () => {
     const button = screen.getByRole('button', {name: /Entrar/i});
     fireEvent.click(button);
 
-    const { pathname } = history.location;
-    await expect(pathname).toBe('/dashboard');
-  }); */
+    expect(screen.getByText(/Simulador de Tinta para estimar Litros nescessario para pintura de uma parede/i)).toBeInTheDocument();
+
+    /* const { pathname } = history.location;
+    await expect(pathname).toBe('/dashboard'); */
+  });
 });
