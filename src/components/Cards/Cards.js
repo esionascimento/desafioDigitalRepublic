@@ -169,7 +169,7 @@ export const Cards = () => {
       <div className="paredes">
         {paredes.map((auxParede, index) => {
           return (
-            <div className="item">
+            <div key={index} className="item">
               { renderTextButton[auxParede] ?
                 renderDados(auxParede)
                 : null
@@ -188,8 +188,8 @@ export const Cards = () => {
       </div>
       <hr></hr>
       <div className="buttonCalcular">
-        <button class="btn btn-primary" onClick={onClickClearAll}>Apagar tudo</button>
-        <button class="btn btn-primary" onClick={onClickResult}>Calcular</button>
+        <button className="btn btn-primary" onClick={onClickClearAll}>Apagar tudo</button>
+        <button className="btn btn-primary" onClick={onClickResult}>Calcular</button>
       </div>
     </div>
   );
