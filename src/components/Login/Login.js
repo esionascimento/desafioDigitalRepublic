@@ -41,6 +41,7 @@ export function Login() {
         <div className="input-form">
           <div className="input-div">
             <input type="text"
+              data-testid="input-email"
               name="email"
               className="input-in input-ra"
               value={email}
@@ -51,6 +52,7 @@ export function Login() {
           </div>
           <div className="input-div">
             <input type="password"
+              data-testid="input-password"
               name="password"
               className="input-in input-ra"
               onChange={onChange}
