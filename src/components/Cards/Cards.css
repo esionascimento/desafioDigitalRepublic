@@ -2,20 +2,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(228, 224, 224);
 }
 
 .paredes {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 40px;
-
+  margin-top: 20px;
 }
 .item {
   /*https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row*/
+  display: flex;
+  flex-direction: column;
   flex: 1 1 50%;
-  padding: 5px; 
   box-sizing: border-box;
   text-align: center;
+  height: 20vh;
+  width: 30vh;
+  border: 0.1px solid silver;
+}
+
+.item .buttonParede {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.item .dadoParede {
+  height: 100%;
+}
+
+.boxDado {
+  display: flex;
+  flex-direction: column;
 }
 
 .buttonCalcular {
@@ -58,6 +77,16 @@ span {
   margin: 0 5px;
 }
 
+@media screen and (max-width: 800px) {
+  .card {
+    margin: 10px;
+    border: none;
+  }
+  .item .buttonParede {
+    margin: 0px;
+  }
+}
+
 @media screen and (max-width: 350px) {
   hr:before {
     content: '';
@@ -74,5 +103,8 @@ span {
   }
   .btn {
     margin-bottom: 5px;
+  }
+  .item {
+    width: 20vh;
   }
 }

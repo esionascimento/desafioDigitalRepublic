@@ -66,7 +66,7 @@ export const Cards = () => {
   
   function handleOk() {
     if (value[qualParede].janela > 0 || value[qualParede].porta > 0) {
-      const resultAlturaLargura = (value.primeiraParede.altura * value.primeiraParede.largura) / 2;
+      const resultAlturaLargura = (value[qualParede].altura * value[qualParede].largura) / 2;
       const resultPortaJanela = ( 1.52 * value[qualParede].porta) + (2.4 * value[qualParede].janela);
       if (resultPortaJanela <= resultAlturaLargura) {
         chaveRenderTextButton(true, 2);
@@ -98,7 +98,7 @@ export const Cards = () => {
 
   function renderDados(parede) {
     return (
-      <div>
+      <div className="boxDado">
         <span>Altura: {value[parede].altura}</span>
         <span>Largura: {value[parede].largura}</span>
         <span>Janela: {value[parede].janela}</span>
@@ -110,12 +110,13 @@ export const Cards = () => {
   function onClickResult() {
     if (renderTextButton.primeiraParede || renderTextButton.segundaParede
         || renderTextButton.terceiraParede || renderTextButton.quartaParede) {
-      const parede1 = (value.primeiraParede.altura * value.primeiraParede.largura) - ( 1.52 * value.primeiraParede.porta) - (2.4 * value.primeiraParede.janela);
-      const parede2 = (value.segundaParede.altura * value.segundaParede.largura) - ( 1.52 * value.segundaParede.porta) - (2.4 * value.segundaParede.janela);;
-      const parede3 = (value.terceiraParede.altura * value.terceiraParede.largura) - ( 1.52 * value.terceiraParede.porta) - (2.4 * value.terceiraParede.janela);;
-      const parede4 = (value.quartaParede.altura * value.quartaParede.largura) - ( 1.52 * value.quartaParede.porta) - (2.4 * value.quartaParede.janela);;
-      resultadoTotalParedeM2 = parede1 + parede2 + parede3 + parede4;
-  
+      let aux = 0;
+      paredes.map((inParede) => {
+        aux = aux + (value[inParede].altura * value[inParede].largura) - ( 1.52 * value[inParede].porta) - (2.4 * value[inParede].janela);
+        return 0;
+      });
+      resultadoTotalParedeM2 = aux;
+
       dispatch(Calcular(resultadoTotalParedeM2))
       setRedirect(true);
       calcularQtdLatasTintas(dispatch, resultadoTotalParedeM2, actionLata05, actionLata25, actionLata36, actionLata18);
@@ -170,17 +171,20 @@ export const Cards = () => {
         {paredes.map((auxParede, index) => {
           return (
             <div key={index} className="item">
-              { renderTextButton[auxParede] ?
-                renderDados(auxParede)
-                : null
-              }
-              <Button name={auxParede} type="primary" onClick={showModal}>
-                {renderTextButton.auxParede ?
-                    <div name={auxParede}>Editar {positionParede[index]}
-                    </div>
-                  : <p name={auxParede}>{positionParede[index]}</p>
+              <div className="dadoParede">
+                { renderTextButton[auxParede] ?
+                  renderDados(auxParede)
+                  :  <p>Nenhum dado inserido</p>
                 }
-              </Button>
+              </div>
+              <div className="buttonParede">
+                <Button name={auxParede} type="primary" onClick={showModal}>
+                  {renderTextButton[auxParede] ?
+                      <p name={auxParede}>Editar {positionParede[index]}</p>
+                    : <p name={auxParede}>{positionParede[index]}</p>
+                  }
+                </Button>
+              </div>
             </div>
           )
         })}
