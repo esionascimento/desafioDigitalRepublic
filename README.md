@@ -1,33 +1,49 @@
 # Boas Vindas ao repositório do Desafio da Digital Republic!
 
-## O que será desenvolvido
+# Sumário
+- [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
+- [Desenvolvimento](#desenvolvimento)
+- [Para clonar o projeto](#caso-queira-clonar-o-repositório)
+- [Regras de negócio](#regras-de-negócio)
+- [Rotas](#rotas)
+- [Deploy](#deploy)
+
+
+# O que deverá ser desenvolvido
 
 Desenvolver um web site para simular a quantidade de tinta nescessario para pintar uma parede.
 
-## Desenvolvimento
+# Desenvolvimento
 
 Aplicação desenvolvidade com `ReactJS`.
 A dois pull request distintos:
 1. Development: Precisa se autenticar para acessar o simulador de tinta
-  * Branch development-with-login
+  * Branch `development-with-login`
   * Nesta branch tem ligação com banco de dados, mongodb
   * Para acessar o simulador de tintas, precisa obrigatoriamente acessar com um login
   * Caso não tenha login, pode se cadastrar
   * Caso tente acessar a rota `/dashboard` sem está autenticado, irá redirecionar para a rota `/`
 2. Development: Não precisa se autenticar para acessar o simulador de tinta
-  * Branch development-without-login
+  * Branch `development-without-login`
   * Nesta branch, autenticação foi retirado
   * Os arquivos que continha autenticação ainda está na branch
   * Todas as rotas estão liberadas
 
-### CASO QUEIRA CLONAR O REPOSITÓRIO
+# Para clonar o projeto
 
 1. Clone o repositório
   * `git clone https://github.com/esionascimento/desafioDigitalRepublic.git`.
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd calculartinta`
-
-2. Instale as dependências e inicialize o projeto
+2. Em seguida acessar a branch do Pull Request
+  ```sh
+    git checkout development-with-login
+  ```
+  ou
+  ```sh
+    git checkout development-without-login
+  ```
+3. Instale as dependências e inicialize o projeto
  * Instale as dependências
     * `npm install`
  * Inicialize o projeto:
@@ -37,7 +53,7 @@ A dois pull request distintos:
 
 Temos, neste projeto, uma série de desafios.
 
-## Regras de negócio
+# Regras de negócio
 
 1. Nenhuma parede pode ter menos de 1 metro nem mais de 15 metros, mas podem possuir alturas e larguras diferentes
 2. O total de área das portas e janelas deve ser no máximo 50% da área de parede
@@ -63,3 +79,4 @@ Deploy para auxiliar
 2. Link com login, algumas rotas precisa de autenticação
   * https://desafio-digital-republic-pkh57w5x0-esionascimento.vercel.app/
 
+README baseado nos REDMEs da trybe
