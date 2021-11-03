@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Boas Vindas ao repositório do Desafio da Digital Republic!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Sumário
+- [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
+- [Desenvolvimento](#desenvolvimento)
+- [Para clonar o projeto](#para-clonar-o-projeto)
+- [Regras de negócio](#regras-de-negócio)
+- [Rotas](#rotas)
+- [Deploy](#deploy)
 
-## Available Scripts
 
-In the project directory, you can run:
+# O que deverá ser desenvolvido
 
-### `npm start`
+Desenvolver um web site para simular a quantidade de tinta nescessario para pintar uma parede.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Desenvolvimento
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Aplicação desenvolvidade com `ReactJS`.
+Está branch corresponde a aplicação com autenticação.
 
-### `npm test`
+1. Development: Precisa se autenticar para acessar o simulador de tinta
+  * Branch `development-with-login`
+  * Nesta branch tem ligação com banco de dados, mongodb
+  * Para acessar o simulador de tintas, precisa obrigatoriamente acessar com um login
+  * Caso não tenha login, pode se cadastrar
+  * Caso tente acessar a rota `/dashboard` sem está autenticado, irá redirecionar para a rota `/`
+  * Link para o repositorio do back-end `https://github.com/esionascimento/object-evoque-back`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Para clonar o projeto
 
-### `npm run build`
+1. Clone o repositório
+  * `git clone https://github.com/esionascimento/desafioDigitalRepublic.git`.
+  * Entre na pasta do repositório que você acabou de clonar:
+    * `cd calculartinta`
+2. Em seguida acessar a branch do Pull Request
+  ```sh
+    git checkout development-with-login
+  ```
+3. Instale as dependências e inicialize o projeto
+ * Instale as dependências
+    * `npm install`
+ * Inicialize o projeto:
+    * `npm start` (uma nova página deve abrir no seu navegador)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Entregáveis
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Temos, neste projeto, uma série de desafios.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Regras de negócio
 
-### `npm run eject`
+1. Nenhuma parede pode ter menos de 1 metro nem mais de 15 metros, mas podem possuir alturas e larguras diferentes
+2. O total de área das portas e janelas deve ser no máximo 50% da área de parede
+3. A altura de paredes com porta deve ser, no mínimo, 30 centímetros maior que a altura da porta
+4. Cada janela possui as medidas: 2,00 x 1,20 mtos
+5. Cada porta possui as medidas: 0,80 x 1,90
+6. Cada litro de tinta é capaz de pintar 5 metros quadrados
+7. Não considerar teto nem piso.
+8. As variações de tamanho das latas de tinta são:
+  * 0,5 L
+  * 2,5 L
+  * 3,6 L
+  * 18 L
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Rotas
+A 3 rotas no projeto
+Rotas `/`,`/dashboard`,`/resultado`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Deploy
+Deploy para auxiliar
+1. Link sem login, podendo acessar as rotas sem autenticação
+  * https://desafio-digital-republic-4kin3tog8-esionascimento.vercel.app/
+  * https://desafio-digital-republic-4kin3tog8-esionascimento.vercel.app/dashboard
+2. Link com login, algumas rotas precisa de autenticação
+  * https://desafio-digital-republic-pkh57w5x0-esionascimento.vercel.app/
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+README baseado nos REDMEs da trybe
