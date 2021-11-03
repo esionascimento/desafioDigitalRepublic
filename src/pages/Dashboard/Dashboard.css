@@ -4,8 +4,8 @@
   border: 1px solid silver;
   width: 80%;
   border-radius: 10px;
-  background-color: #fff;
-  /* box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%); */
+  background-color: rgb(228, 224, 224);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   flex-direction: column;
   justify-content: center;
 }
