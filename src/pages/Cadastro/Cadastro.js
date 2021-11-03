@@ -26,7 +26,6 @@ export function Cadastro() {
   function onSubmit() {
     newCadastro(cadastro);
     setRedirect(true);
-    /* setStorage(cadastro); */
   }
   
   if (redirect) {

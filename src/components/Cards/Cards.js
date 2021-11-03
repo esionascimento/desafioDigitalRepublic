@@ -98,7 +98,7 @@ export const Cards = () => {
 
   function renderDados(parede) {
     return (
-      <div>
+      <div className="boxDado">
         <span>Altura: {value[parede].altura}</span>
         <span>Largura: {value[parede].largura}</span>
         <span>Janela: {value[parede].janela}</span>
@@ -171,17 +171,20 @@ export const Cards = () => {
         {paredes.map((auxParede, index) => {
           return (
             <div key={index} className="item">
-              { renderTextButton[auxParede] ?
-                renderDados(auxParede)
-                : null
-              }
-              <Button name={auxParede} type="primary" onClick={showModal}>
-                {renderTextButton.auxParede ?
-                    <div name={auxParede}>Editar {positionParede[index]}
-                    </div>
-                  : <p name={auxParede}>{positionParede[index]}</p>
+              <div className="dadoParede">
+                { renderTextButton[auxParede] ?
+                  renderDados(auxParede)
+                  :  null
                 }
-              </Button>
+              </div>
+              <div className="buttonParede">
+                <Button name={auxParede} type="primary" onClick={showModal}>
+                  {renderTextButton[auxParede] ?
+                      <p name={auxParede}>Editar {positionParede[index]}</p>
+                    : <p name={auxParede}>{positionParede[index]}</p>
+                  }
+                </Button>
+              </div>
             </div>
           )
         })}
