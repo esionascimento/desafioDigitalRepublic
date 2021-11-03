@@ -22,13 +22,14 @@ export function Resultado() {
       <h2>Resultado</h2>
       <div className="conteiner-body">
         <div>
-          <p>Total de parede: {(resultadoTotalParedeM2).toFixed(2)}m^2</p>
+          <p>Total de parede: {(resultadoTotalParedeM2).toFixed(2)}m²</p>
         </div>
         <div>
-          {lata05 > 0 && <p>Precisa de {lata05} latas de 0.5L</p>}
-          {lata25 > 0 && <p>Precisa de {lata25} latas de 2.5L</p>}
-          {lata36 > 0 && <p>Precisa de {lata36} latas de 3.6L</p>}
-          {lata18 > 0 && <p>Precisa de {lata18} latas de 18L</p>}
+          <p>Precisa de:</p>
+          {lata05 > 0 && <p>{lata05} latas de 0.5L</p>}
+          {lata25 > 0 && <p>{lata25} latas de 2.5L</p>}
+          {lata36 > 0 && <p>{lata36} latas de 3.6L</p>}
+          {lata18 > 0 && <p>{lata18} latas de 18L</p>}
         </div>
         <button className="btn btn-primary" onClick={onClickResult}>Voltar</button>
       </div>
