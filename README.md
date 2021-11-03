@@ -76,6 +76,7 @@ Rotas `/`,`/dashboard`,`/resultado`
 Deploy para auxiliar
 1. Link sem login, podendo acessar as rotas sem autenticação
   * https://desafio-digital-republic-4kin3tog8-esionascimento.vercel.app/
+  * https://desafio-digital-republic-4kin3tog8-esionascimento.vercel.app/dashboard
 2. Link com login, algumas rotas precisa de autenticação
   * https://desafio-digital-republic-pkh57w5x0-esionascimento.vercel.app/
 
