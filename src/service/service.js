@@ -12,7 +12,7 @@ export const authLogin = (user) => {
 export const newCadastro = (user) => {
   axios.post('https://object-back.herokuapp.com/user', user)
   .then((res) => {
-    console.log('Usuario cadastrado com sucesso');
+    window.alert('Usuario cadastrado com sucesso.');
   })
   .catch(() => window.alert('Erro ao cadastrar usuario'));
 };

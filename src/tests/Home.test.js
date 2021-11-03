@@ -1,6 +1,5 @@
 import React from "react";
-import { Router } from 'react-router-dom';
-import { render, fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { Home } from "../pages/Home/Home.js";
 import renderWithRouter from './RenderRouter';

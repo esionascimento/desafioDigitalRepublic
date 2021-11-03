@@ -1,8 +1,6 @@
 export function calcularQtdLatasTintas(dispatch, resultadoTotalParedeM2, actionLata05, actionLata25, actionLata36, actionLata18) {
-console.log('dispatch :', dispatch);
   let lata05 = 0, lata25 = 0, lata36 = 0, lata18 = 0;
   let litroTintas = resultadoTotalParedeM2 / 5;
-  console.log('resultadoTotalParedeM2 :', resultadoTotalParedeM2);
   while (litroTintas > 0) {
     if (litroTintas >= 18) {
       litroTintas = litroTintas - 18
