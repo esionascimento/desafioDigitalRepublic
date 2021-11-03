@@ -174,7 +174,7 @@ export const Cards = () => {
               <div className="dadoParede">
                 { renderTextButton[auxParede] ?
                   renderDados(auxParede)
-                  :  null
+                  :  <p>Nenhum dado inserido</p>
                 }
               </div>
               <div className="buttonParede">

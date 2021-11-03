@@ -7,9 +7,7 @@
 .paredes {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 40px;
-  border: 0.5px solid silver;
-  padding: 1px;
+  margin-top: 20px;
 }
 .item {
   /*https://stackoverflow.com/questions/29546550/flexbox-4-items-per-row*/
@@ -20,13 +18,13 @@
   text-align: center;
   height: 20vh;
   width: 30vh;
+  border: 0.1px solid silver;
 }
 
 .item .buttonParede {
   display: flex;
   justify-content: center;
 }
-
 
 .item .dadoParede {
   height: 100%;
@@ -93,5 +91,13 @@ span {
   }
   .btn {
     margin-bottom: 5px;
+  }
+  .card {
+    margin: 10px;
+    border: none;
+  }
+  .item {
+    width: 20vh;
+
   }
 }

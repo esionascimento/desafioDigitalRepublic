@@ -1,7 +1,7 @@
 .container-pai {
   display: flex;
-  margin: 40px auto;
-  border: 2px solid silver;
+  margin: 10px auto;
+  border: 1px solid silver;
   width: 80%;
   border-radius: 10px;
   background-color: #fff;
@@ -10,6 +10,11 @@
   justify-content: center;
 }
 
+html {
+  height: 100%;
+}
+body { position:absolute; top:0; bottom:0; right:0; left:0; }
+
 h1 {
   text-align: center;
 }
@@ -17,4 +22,10 @@ h1 {
 .text {
   margin: 10px;
   text-align: justify;
+}
+
+@media screen and (max-width: 800px) {
+  .container-pai {
+    margin: 0px auto;
+  }
 }
