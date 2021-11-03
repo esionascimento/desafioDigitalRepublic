@@ -67,9 +67,7 @@ export const Cards = () => {
   function handleOk() {
     if (value[qualParede].janela > 0 || value[qualParede].porta > 0) {
       const resultAlturaLargura = (value[qualParede].altura * value[qualParede].largura) / 2;
-      console.log('resultAlturaLargura :', resultAlturaLargura);
       const resultPortaJanela = ( 1.52 * value[qualParede].porta) + (2.4 * value[qualParede].janela);
-      console.log('resultPortaJanela :', resultPortaJanela);
       if (resultPortaJanela <= resultAlturaLargura) {
         chaveRenderTextButton(true, 2);
       } else {

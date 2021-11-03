@@ -4,10 +4,9 @@ export const authLogin = (user) => {
   axios.post('https://object-back.herokuapp.com/login', user)
     .then((res) => {
       localStorage.setItem('token', res.data.token);
-
       window.location.pathname = '/dashboard';
     })
-    .catch(() => console.log('error login'));
+    .catch(() => window.alert('Usuario inexistente ou dados incorretos'));
 };
 
 export const newCadastro = (user) => {
@@ -15,5 +14,5 @@ export const newCadastro = (user) => {
   .then((res) => {
     console.log('Usuario cadastrado com sucesso');
   })
-  .catch(() => console.log('error cadastro'));
+  .catch(() => window.alert('Erro ao cadastrar usuario'));
 };

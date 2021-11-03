@@ -12,7 +12,7 @@ function initialState() {
 export function Login() {
   const [valuesLogin, setValues] = useState(initialState);
   
-  const [validLogin, setValidLogin] = useState(false);
+  /* const [validLogin, setValidLogin] = useState(false); */
   const { email, password } = valuesLogin;
 
   function onChange(event) {
@@ -29,15 +29,15 @@ export function Login() {
     authLogin(valuesLogin);
 
     setValues(initialState);
-    setValidLogin(true);
+    /* setValidLogin(true); */
   }
 
   return (
-    <div className="card">
+    <div className="cardLogin">
       <form onSubmit={onSubmit}>
-        {validLogin && 
+        {/* {validLogin && 
           <h3>Credenciais inexistente ou invalida</h3>
-        }
+        } */}
         <div className="input-form">
           <div className="input-div">
             <input type="text"

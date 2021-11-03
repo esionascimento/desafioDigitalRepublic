@@ -33,7 +33,7 @@ export function Cadastro() {
   }
 
   return (
-    <div className="card">
+    <div className="cardCadastro">
       <div>
         <h3>Registre-se</h3>
       </div>
