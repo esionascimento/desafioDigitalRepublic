@@ -26,7 +26,6 @@ export function Cadastro() {
   function onSubmit() {
     newCadastro(cadastro);
     setRedirect(true);
-    /* setStorage(cadastro); */
   }
   
   if (redirect) {
@@ -34,7 +33,7 @@ export function Cadastro() {
   }
 
   return (
-    <div className="card">
+    <div className="cardCadastro">
       <div>
         <h3>Registre-se</h3>
       </div>

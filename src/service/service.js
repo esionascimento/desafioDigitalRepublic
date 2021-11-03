@@ -1,21 +1,18 @@
 import axios from 'axios';
 
 export const authLogin = (user) => {
-  axios.post('https://project-republic.herokuapp.com/login', user)
+  axios.post('https://object-back.herokuapp.com/login', user)
     .then((res) => {
-      console.log('res :', res.data);
       localStorage.setItem('token', res.data.token);
-
       window.location.pathname = '/dashboard';
     })
-    .catch((res) => console.log('error login'));
+    .catch(() => window.alert('Usuario inexistente ou dados incorretos'));
 };
 
 export const newCadastro = (user) => {
-  axios.post('https://project-republic.herokuapp.com/user', user)
+  axios.post('https://object-back.herokuapp.com/user', user)
   .then((res) => {
-    console.log('res :', res);
-    console.log(res.data);
+    window.alert('Usuario cadastrado com sucesso.');
   })
-  .catch(() => console.log('error cadastro'));
+  .catch(() => window.alert('Erro ao cadastrar usuario'));
 };
