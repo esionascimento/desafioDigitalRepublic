@@ -1,5 +1,5 @@
 # Boas Vindas ao repositório do Desafio da Digital Republic!
-
+  * Está branch corresponde a aplicação com autenticação.
 # Sumário
 - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
 - [Desenvolvimento](#desenvolvimento)
@@ -15,8 +15,7 @@ Desenvolver um web site para simular a quantidade de tinta nescessario para pint
 
 # Desenvolvimento
 
-Aplicação desenvolvidade com `ReactJS`.
-Está branch corresponde a aplicação com autenticação.
+Aplicação desenvolvida em `ReactJS`.
 
 1. Development: Precisa se autenticar para acessar o simulador de tinta
   * Branch `development-with-login`
