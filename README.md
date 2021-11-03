@@ -23,6 +23,7 @@ A dois pull request distintos:
   * Para acessar o simulador de tintas, precisa obrigatoriamente acessar com um login
   * Caso não tenha login, pode se cadastrar
   * Caso tente acessar a rota `/dashboard` sem está autenticado, irá redirecionar para a rota `/`
+  * Link para o repositorio do back-end `https://github.com/esionascimento/object-evoque-back`
 2. Development: Não precisa se autenticar para acessar o simulador de tinta
   * Branch `development-without-login`
   * Nesta branch, autenticação foi retirado
