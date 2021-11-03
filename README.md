@@ -3,7 +3,7 @@
 # Sumário
 - [O que deverá ser desenvolvido](#o-que-deverá-ser-desenvolvido)
 - [Desenvolvimento](#desenvolvimento)
-- [Para clonar o projeto](#caso-queira-clonar-o-repositório)
+- [Para clonar o projeto](#para-clonar-o-projeto)
 - [Regras de negócio](#regras-de-negócio)
 - [Rotas](#rotas)
 - [Deploy](#deploy)
